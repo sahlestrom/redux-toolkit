@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import { Cat } from "react-kawaii";
 import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../app/store";
 import { updateCatMood, MOODS } from "./api/mood";
 
 const IndexPage: NextPage = () => {
   const dispatch = useDispatch();
-  const currentMood = useSelector((state: any) => state.mood);
+  const currentMood = useSelector((state: AppState) => state.mood);
 
   const handleMoodUpdate = (evt) => {
     const mood = evt.target.dataset.type;

@@ -1,26 +1,23 @@
-import { configureStore, ThunkAction, Action, createStore } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import counterReducer from '../features/counter/counterSlice'
-import { reducer } from '../pages/api/mood'
+import counterReducer from "../features/counter/counterSlice";
+import moodReducer  from "../pages/api/mood";
 
-// export function makeStore() {
-//   return configureStore({
-//     reducer: { counter: counterReducer },
-//   })
-// }
+export function makeStore() {
+  return configureStore({ reducer: moodReducer });
+}
 
-// const store = makeStore()
-const store = createStore(reducer)
+const store = makeStore();
 
-export type AppState = ReturnType<typeof store.getState>
+export type AppState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   AppState,
   unknown,
   Action<string>
->
+>;
 
-export default store
+export default store;

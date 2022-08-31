@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 //action type
 export const UPDATE_MOOD = "UPDATE_MOOD";
 
@@ -8,23 +10,19 @@ export const MOODS = {
   BLISSFUL: "blissful",
   LOVESTRUCK: "lovestruck",
   EXCITED: "excited",
-  KO: "ko"
+  KO: "ko",
 };
-const INITIAL_STATE = { mood: MOODS.SAD };
+const INITIAL_STATE = { mood: MOODS.HAPPY };
 
-//action creators
-export const updateCatMood = (payload) => ({
-  type: UPDATE_MOOD,
-  payload
+const flappyMoodSlice = createSlice({
+  name: "mood",
+  initialState: INITIAL_STATE,
+  reducers: {
+    updateCatMood: (state, action) => {
+      state.mood = action.payload;
+    },
+  },
 });
 
-//reducer
-export const reducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case UPDATE_MOOD:
-      return { ...state, mood: action.payload };
-
-    default:
-      return state;
-  }
-};
+export const { updateCatMood } = flappyMoodSlice.actions;
+export default flappyMoodSlice.reducer;
